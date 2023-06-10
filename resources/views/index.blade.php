@@ -144,7 +144,7 @@
 													$user = Auth::user();
 													$love = $user->Love;
 													$listlove = explode(",", $love);
-													$productId = $new_product->id; // Lấy ID của sản phẩm cần thêm vào yêu thích
+													$productId = $recommended_product->id; // Lấy ID của sản phẩm cần thêm vào yêu thích
 												@endphp
 												<div class="d-flex align-items-center">
 													@if (!in_array($productId, $listlove))
@@ -153,14 +153,18 @@
 															<button type="submit" class="btn btn-primary"><i class="fas fa-heart fa-lg"></i></button>
 														</form>
 													@else
-														<span class="already-favorite"><i class="fas fa-heart fa-lg"></i></span>
-														<span>Sản phẩm này đã có trong danh sách yêu thích của bạn.</span>
+													<form action="{{ route('getLike', ['id' => $productId]) }}" method="POST">
+															@csrf
+															<button type="submit" class="btn btn-primary"><i class="fas fa-heart fa-lg"></i></button>
+														</form>
 													@endif
 													<a class="beta-btn primary ml-3" href="{{ route('show', ['id' => $new_product->id]) }}">Details <i class="fa fa-chevron-right"></i></a>
 												</div>
-											@else
-												<span class="already-favorite"><i class="fas fa-heart fa-lg"></i></span>
-												<span> Bạn cần đăng nhập để sử dụng chức năng này.</span>
+												@else
+												<form action="{{ route('getLike', ['id' => $new_product->id]) }}" method="POST">
+															@csrf
+															<button type="submit" class="btn btn-primary"><i class="fas fa-heart fa-lg"></i></button>
+														</form>
 											@endif
 
 
@@ -227,7 +231,7 @@
 													$user = Auth::user();
 													$love = $user->Love;
 													$listlove = explode(",", $love);
-													$productId = $products->id; // Lấy ID của sản phẩm cần thêm vào yêu thích
+													$productId = $recommended_product->id; // Lấy ID của sản phẩm cần thêm vào yêu thích
 												@endphp
 												<div class="d-flex align-items-center">
 													@if (!in_array($productId, $listlove))
@@ -236,14 +240,18 @@
 															<button type="submit" class="btn btn-primary"><i class="fas fa-heart fa-lg"></i></button>
 														</form>
 													@else
-														<span class="already-favorite"><i class="fas fa-heart fa-lg"></i></span>
-														<span>Sản phẩm này đã có trong danh sách yêu thích của bạn.</span>
+													<form action="{{ route('getLike', ['id' => $productId]) }}" method="POST">
+															@csrf
+															<button type="submit" class="btn btn-primary"><i class="fas fa-heart fa-lg"></i></button>
+														</form>
 													@endif
 													<a class="beta-btn primary ml-3" href="{{ route('show', ['id' => $products->id]) }}">Details <i class="fa fa-chevron-right"></i></a>
 												</div>
-											@else
-												<span class="already-favorite"><i class="fas fa-heart fa-lg"></i></span>
-												<span> Bạn cần đăng nhập để sử dụng chức năng này.</span>
+												@else
+												<form action="{{ route('getLike', ['id' => $products->id]) }}" method="POST">
+															@csrf
+															<button type="submit" class="btn btn-primary"><i class="fas fa-heart fa-lg"></i></button>
+														</form>
 											@endif
 											<div class="clearfix"></div>
 										</div>
